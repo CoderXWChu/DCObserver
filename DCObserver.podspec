@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "DCObserver"
-  s.version      = "0.0.1"
-  s.summary      = "Convenient Methods For KVO and NSNotification in iOS. You do not need to care about what time to remove observer."
+  s.version      = "0.0.2"
+  s.summary      = "Convenient Methods With KVO and NSNotification For iOS."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/CoderXWChu/DCObserver.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/CoderXWChu/DCObserver.git", :tag => "0.0.2" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
