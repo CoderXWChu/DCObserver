@@ -9,6 +9,10 @@
 
 #import <Foundation/Foundation.h>
 
+#ifndef KEYPATH
+#define KEYPATH(obj,keyPath) @(((void)obj.keyPath, #keyPath))
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (DCExtForKVO)
