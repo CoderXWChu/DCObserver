@@ -24,8 +24,10 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     // 同一个对象可以多次监听同一个路径，完成不同的功能，提高代码的可读性，便于维护。
+    // __weak typeof(*&self) weakSelf = self;
     [self dc_addObserverBlockForKeyPath:KEYPATH(self, dataSource) block:^(id  _Nonnull __weak obj, id  _Nullable oldVal, id  _Nullable newVal) {
        
+        // __strong typeof(weakSelf) strongSelf = weakSelf;
         NSLog(@"+++++++++++");
         NSLog(@"old Value = %@", oldVal);
         NSLog(@"new Value = %@", newVal);

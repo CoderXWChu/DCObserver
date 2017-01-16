@@ -23,6 +23,8 @@ Convenient Methods For KVO and NSNotification. You do not need to care about wha
 使用
 ==============
 
+##warning: 需使用弱引用 weakSelf 避免循环引用
+
 ###方便的使用 KVO, NSNotification, 不用在关心何时移除观察者
 
 ```objc

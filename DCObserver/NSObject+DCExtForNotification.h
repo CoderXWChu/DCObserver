@@ -18,21 +18,24 @@ NS_ASSUME_NONNULL_BEGIN
 //============================================================
 
 
-/*!
- *  用于监听通知
- *  @param aName 通知名称
- *  @param block 监听到通知后执行的 block
+/**
+ 便利监听通知
+
+ @param aName 通知名称
+ @param block 监听到通知后执行的 block
  */
 - (void)dc_addObserverBlockForNotificationName:(NSString *)aName block:(void(^)(__weak id __nullable obj, NSNotification *noti))block;
 
-/*!
- *  移除对通知的监听
- *  @param aName 通知名称
+
+/**
+ 移除对通知的监听
+
+ @param aName 通知名称
  */
 - (void)dc_removeObserverWithNotificationName:(NSString *)aName;
 
-/*!
- *  移除所有通知的监听
+/**
+  移除所有通知的监听
  */
 - (void)dc_removeObserverNotificationBlocks;
 

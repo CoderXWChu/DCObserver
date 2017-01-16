@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DCObserver  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="DCObserver  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">DCObserver Docs</a> (75% documented)</p>
+        <p class="header-right"><a href="https://github.com/CoderXWChu/DCObserver"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">DCObserver Reference</a>
+        <img id="carat" src="img/carat.png" />
+        DCObserver  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Categories.html">Categories</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Categories/NSObject(DCExtForKVO).html">NSObject(DCExtForKVO)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <a href='#dcobserver' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='dcobserver'>DCObserver</h1>
+
+<p>Convenient Methods For KVO and NSNotification. You do not need to care about what time to remove observer.</p>
+
+<p>使用 KVO 和 NSNotification 的便利方法, 你不需要关心何时移除观察者/监听者.</p>
+<a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id=''>如何安装</h3>
+<a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id=''>安装</h1>
+<a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods'>CocoaPods</h3>
+
+<ol>
+<li>在 Podfile 中添加  <code>pod &#39;DCObserver&#39;</code>。</li>
+<li>导入 &lt;DCObserver/DCObserver.h&gt;。</li>
+</ol>
+<a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id=''>手动安装</h3>
+
+<ol>
+<li>下载 DCObserver 文件夹内的所有内容。</li>
+<li>将 DCObserver 内的源文件添加(拖放)到你的工程。</li>
+</ol>
+<a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id=''>使用</h1>
+<a href='#warning-weakself' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='warning-weakself'>warning: 需使用弱引用 weakSelf 避免循环引用</h2>
+<a href='#kvo-nsnotification' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='kvo-nsnotification'>方便的使用 KVO, NSNotification, 不用在关心何时移除观察者</h3>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">target</span> <span class="nf">dc_addObserverBlockForKeyPath</span><span class="p">:</span><span class="s">@"keypath"</span> <span class="nf">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">id</span>  <span class="n">_Nonnull</span> <span class="n">__weak</span> <span class="n">obj</span><span class="p">,</span> <span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">oldVal</span><span class="p">,</span> <span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">newVal</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// obj == target 
+</span>    <span class="c1">// oldVal : the old value of keypath
+</span>    <span class="c1">// newVal : the new value of keypath
+</span>    <span class="c1">// ...
+</span><span class="p">}];</span>
+
+<span class="p">[</span><span class="n">target</span> <span class="nf">dc_addObserverBlockForNotificationName</span><span class="p">:</span><span class="s">@"aNotificationName"</span> <span class="nf">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">__weak</span> <span class="n">obj</span><span class="p">,</span> <span class="n">NSNotification</span> <span class="o">*</span> <span class="n">_Nonnull</span> <span class="n">noti</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// obj == noti.object 
+</span>    <span class="c1">// noti : aNotification which name is 'aNotificationName'
+</span>    <span class="c1">// ...
+</span>
+<span class="p">}];</span>
+
+</code></pre>
+<a href='#kvo-if-else' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='kvo-if-else'>KVO - 同一观察者, 多个路径下, 不需要再 if/else ,一句代码搞定</h3>
+<pre class="highlight objective_c"><code><span class="c1">// 同一个观察者观察多个路径的操作
+</span>
+<span class="p">[</span><span class="n">targetOne</span> <span class="nf">dc_addObserverBlockForKeyPath</span><span class="p">:</span><span class="s">@"keypath1"</span> <span class="nf">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">id</span>  <span class="n">_Nonnull</span> <span class="n">__weak</span> <span class="n">obj</span><span class="p">,</span> <span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">oldVal</span><span class="p">,</span> <span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">newVal</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something...
+</span><span class="p">}];</span>
+
+<span class="p">[</span><span class="n">targetOne</span> <span class="nf">dc_addObserverBlockForKeyPath</span><span class="p">:</span><span class="s">@"keypath2"</span> <span class="nf">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">id</span>  <span class="n">_Nonnull</span> <span class="n">__weak</span> <span class="n">obj</span><span class="p">,</span> <span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">oldVal</span><span class="p">,</span> <span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">newVal</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something...
+</span><span class="p">}];</span>
+
+<span class="p">[</span><span class="n">targetOne</span> <span class="nf">dc_addObserverBlockForKeyPath</span><span class="p">:</span><span class="s">@"keypath3"</span> <span class="nf">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">id</span>  <span class="n">_Nonnull</span> <span class="n">__weak</span> <span class="n">obj</span><span class="p">,</span> <span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">oldVal</span><span class="p">,</span> <span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">newVal</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something...
+</span><span class="p">}];</span>
+
+</code></pre>
+<a href='#kvo-nsnotification' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='kvo-nsnotification'>KVO/NSNotification 支持 同一路径的观察/ 同一名称的通知  下, 可以实现多个操作的支持</h3>
+<pre class="highlight objective_c"><code>
+<span class="c1">// 同一个观察者观察多同一路径的多个操作
+// KVO
+</span><span class="p">[</span><span class="n">targetOne</span> <span class="nf">dc_addObserverBlockForKeyPath</span><span class="p">:</span><span class="s">@"keypath1"</span> <span class="nf">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">id</span>  <span class="n">_Nonnull</span> <span class="n">__weak</span> <span class="n">obj</span><span class="p">,</span> <span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">oldVal</span><span class="p">,</span> <span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">newVal</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something...
+</span><span class="p">}];</span>
+
+<span class="p">[</span><span class="n">targetOne</span> <span class="nf">dc_addObserverBlockForKeyPath</span><span class="p">:</span><span class="s">@"keypath1"</span> <span class="nf">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">id</span>  <span class="n">_Nonnull</span> <span class="n">__weak</span> <span class="n">obj</span><span class="p">,</span> <span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">oldVal</span><span class="p">,</span> <span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">newVal</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do another thing...
+</span><span class="p">}];</span>
+
+<span class="c1">// 同一个观察者监听同一通知的多个操作
+// NSNotification
+</span>
+<span class="p">[</span><span class="n">targetOne</span> <span class="nf">dc_addObserverBlockForNotificationName</span><span class="p">:</span><span class="s">@"aNotificationName"</span> <span class="nf">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">__weak</span> <span class="n">obj</span><span class="p">,</span> <span class="n">NSNotification</span> <span class="o">*</span> <span class="n">_Nonnull</span> <span class="n">noti</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something...
+</span><span class="p">}];</span>
+
+<span class="p">[</span><span class="n">targetOne</span> <span class="nf">dc_addObserverBlockForNotificationName</span><span class="p">:</span><span class="s">@"aNotificationName"</span> <span class="nf">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">id</span>  <span class="n">_Nullable</span> <span class="n">__weak</span> <span class="n">obj</span><span class="p">,</span> <span class="n">NSNotification</span> <span class="o">*</span> <span class="n">_Nonnull</span> <span class="n">noti</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do another thing...
+</span><span class="p">}];</span>
+
+
+</code></pre>
+<a href='#api-dcobserver-h' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='api-dcobserver-h'>更多 API 参照 DCObserver.h</h4>
+<a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id=''>许可证</h1>
+
+<p>DCObserver 使用 MIT 许可证，详情见 LICENSE 文件。</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="https://github.com/CoderXWChu" target="_blank" rel="external">CoderXWChu</a>. All rights reserved. (Last updated: 2017-01-16)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

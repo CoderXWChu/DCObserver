@@ -1,0 +1,19 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/cxw/CoderXWChu@github.com/DCObserver/DCObserver/NSObject+DCExtForKVO.h",
+      "line": 18,
+      "symbol": "NSObject(DCExtForKVO)",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.category",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/cxw/CoderXWChu@github.com/DCObserver/DCObserver/NSObject+DCExtForNotification.h",
+      "line": 14,
+      "symbol": "NSObject(DCExtForNotification)",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.category",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/cxw/CoderXWChu@github.com/DCObserver"
+}
